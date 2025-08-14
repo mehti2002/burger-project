@@ -1,33 +1,36 @@
 <template>
-  <section class="product-section" v-for="index in 5" :key="index">
+  <section class="product-section">
     <div class="product-section__cart-img-container">
-      <img
-        class="product-section__cart-img"
-        src="/images/product/productCart/red.png"
-      />
+      <img class="product-section__cart-img" :src="product.image" />
     </div>
     <img
+      v-if="product.isVegan"
       class="product-section__cart-vegan-icon"
       src="/images/product/productCart/vegan.png"
     />
 
     <div class="product-section__cart-content">
       <div class="product-section__cart-info">
-        <span class="product-section__cart-info-name">Red Beets Burger</span>
-        <span class="product-section__cart-info-weight">236g</span>
-        <span class="product-section__cart-info-contents"
-          >Black bun , tuna steak , tomato , lettuce , teriyaki sauce</span
+        <span class="product-section__cart-info-name">{{ product.name }}</span>
+        <span class="product-section__cart-info-weight"
+          >{{ product.weight }}g</span
         >
+        <span class="product-section__cart-info-contents">{{
+          product.ingredients
+        }}</span>
       </div>
 
       <div class="product-section__cart-actions">
-        <span class="product-section__cart-price">$ 12.99</span>
+        <span class="product-section__cart-price">{{ product.price }}$</span>
         <div class="product-section__cart-btns">
           <div class="product-section__cart-btns-container">
             ّ
             <img class="product-section__cart-btns-img" src="/icons/eye.svg" />
           </div>
-          <div class="product-section__cart-btns-container">
+          <div
+            @click="addDialog.open()"
+            class="product-section__cart-btns-container"
+          >
             <img
               class="product-section__cart-btns-img"
               src="/icons/setting.svg"
@@ -40,6 +43,16 @@
 </template>
 
 <script setup>
+import { useAddDialogStore } from "~/store/addDialogStore";
+
+const props = defineProps({
+  product: {
+    type: Object,
+    default: null,
+  },
+});
+
+const addDialog = useAddDialogStore();
 </script>
 
 <style lang="scss">
@@ -64,7 +77,7 @@
     height: 15px;
   }
 
-  &__cart-price{
+  &__cart-price {
     font-size: 20px;
     font-weight: 500;
   }

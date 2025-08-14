@@ -8,17 +8,34 @@
       <SearchBar />
       <TabsProduct />
       <section class="home-page__products">
-        <ProductCard />
+        <ProductCard
+          v-for="product in products"
+          :key="product.id"
+          :product="product"
+        />
         <div class="home-page__products-add-container">
           <img class="home-page__products-add-icon" src="/icons/plus.svg" />
           <span class="home-page__products-add-text">Add new product</span>
         </div>
       </section>
     </section>
+
+    <div
+      class="dialog-overlay"
+      :class="{ 'dialog-overlay--active': addDialog.isOpen }"
+      @click="addDialog.close()"
+    ></div>
+    <ProductDialog class="product-dialog" />
   </main>
 </template>
 
 <script setup>
+import { useAddDialogStore } from "~/store/addDialogStore";
+import mockProducts from "./../src/data/mockProducts.json";
+
+const products = mockProducts;
+
+const addDialog = useAddDialogStore();
 </script>
 
 <style lang="scss" scoped>
@@ -88,6 +105,26 @@
     font-size: 16px;
     font-weight: 500;
     color: #bcc6cc;
+  }
+
+  .dialog-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+
+    &--active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+
+  .product-dialog {
+    position: fixed;
+    z-index: 20;
   }
 }
 </style>
