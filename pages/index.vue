@@ -31,8 +31,6 @@
     width: 250px;
     height: 100vh;
     background-color: #fff;
-    color: white;
-    padding: 1rem;
     box-sizing: border-box;
   }
 
