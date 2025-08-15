@@ -7,7 +7,8 @@
         "price": 3.99,
         "image": "/images/product/productCart/shrimp.png",
         "isVegan": false,
-        "category": "Main courses"
+        "category": "Main courses",
+        "calories": 0
     },
     {
         "id": 2,
@@ -17,7 +18,8 @@
         "price": 2.99,
         "image": "/images/product/productCart/red.png",
         "isVegan": true,
-        "category": "Main courses"
+        "category": "Main courses",
+        "calories": 0
     },
     {
         "id": 3,
@@ -27,7 +29,8 @@
         "price": 12.99,
         "image": "/images/product/productCart/avocrazy.png",
         "isVegan": false,
-        "category": "Main courses"
+        "category": "Main courses",
+        "calories": 0
     },
     {
         "id": 4,
@@ -37,7 +40,8 @@
         "price": 7.99,
         "image": "/images/product/productCart/pancake.png",
         "isVegan": false,
-        "category": "Side dishes"
+        "category": "Side dishes",
+        "calories": 0
     },
     {
         "id": 5,
@@ -47,7 +51,8 @@
         "price": 10.99,
         "image": "/images/product/productCart/coffee.png",
         "isVegan": true,
-        "category": "Drinks"
+        "category": "Drinks",
+        "calories": 0
     },
     {
         "id": 6,
@@ -57,7 +62,8 @@
         "price": 12.99,
         "image": "/images/product/productCart/teriyaki.png",
         "isVegan": true,
-        "category": "Main courses"
+        "category": "Main courses",
+        "calories": 0
     },
     {
         "id": 7,
@@ -67,6 +73,7 @@
         "price": 19.99,
         "image": "/images/product/productCart/kimchifries.png",
         "isVegan": true,
-        "category": "Side dishes"
+        "category": "Side dishes",
+        "calories": 0
     }
 ]

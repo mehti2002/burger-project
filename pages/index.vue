@@ -5,15 +5,22 @@
     </aside>
 
     <section class="home-page__body">
-      <SearchBar />
-      <TabsProduct />
+      <SearchBar v-model="searchQuery" />
+      <TabsProduct
+        :tabs="tabsItem"
+        :active="selectedTab"
+        @change="selectedTab = $event"
+      />
       <section class="home-page__products">
         <ProductCard
-          v-for="product in products"
+          v-for="product in filteredProducts"
           :key="product.id"
           :product="product"
         />
-        <div class="home-page__products-add-container">
+        <div
+          @click="addDialog.open()"
+          class="home-page__products-add-container"
+        >
           <img class="home-page__products-add-icon" src="/icons/plus.svg" />
           <span class="home-page__products-add-text">Add new product</span>
         </div>
@@ -22,20 +29,44 @@
 
     <div
       class="dialog-overlay"
-      :class="{ 'dialog-overlay--active': addDialog.isOpen }"
+      :class="{
+        'dialog-overlay--active': addDialog.isOpen || readDialog.isOpen,
+      }"
       @click="addDialog.close()"
     ></div>
-    <ProductDialog class="product-dialog" />
+    <ProductAddDialog class="product-dialog" />
+    <ProductEditDialog class="product-dialog" />
   </main>
 </template>
 
 <script setup>
 import { useAddDialogStore } from "~/store/addDialogStore";
 import mockProducts from "./../src/data/mockProducts.json";
+import { useReadDialogStore } from "~/store/readDialogStore";
 
-const products = mockProducts;
+const tabsItem = [
+  { name: "Main courses", icon: "/icons/tabicon1.svg" },
+  { name: "Side dishes", icon: "/icons/tabicon2.svg" },
+  { name: "Drinks", icon: "/icons/tabicon3.svg" },
+  { name: "Other", icon: "/icons/tabicon4.svg" },
+];
+
+const selectedTab = ref(0);
+
+const products = ref(mockProducts);
+
+const searchQuery = ref("");
+
+const filteredProducts = computed(() => {
+  const currentCategory = tabsItem[selectedTab.value]?.name || "";
+  return products.value.filter(
+    (p) =>
+      p.name.toLowerCase().includes(searchQuery.value.toLowerCase()) && (currentCategory ? p.category === currentCategory : true)
+  );
+});
 
 const addDialog = useAddDialogStore();
+const readDialog = useReadDialogStore();
 </script>
 
 <style lang="scss" scoped>

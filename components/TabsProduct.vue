@@ -2,35 +2,48 @@
   <section class="tabs-section">
     <div class="tabs-section__container">
       <div
-        class="tabs-section__item"
-        v-for="(tab, index) in tabsItem"
+        v-for="(tab, index) in tabs"
         :key="index"
-        :class="{ 'tabs-section__item-active': choseTab === index }"
+        :class="{ 'tabs-section__item-active': activeTab === index }"
+        class="tabs-section__item"
         @click="selectTab(index)"
       >
         <img class="tabs-section__item-icon" :src="tab.icon" />
         <span class="tabs-section__item-name">{{ tab.name }}</span>
       </div>
-      <img class="tabs-section__icon" src="/icons/tabicon5.svg" />
     </div>
   </section>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, watch, defineProps, defineEmits } from "vue";
 
-const tabsItem = [
-  { name: "Main courses", icon: "/icons/tabicon1.svg" },
-  { name: "Side dishes", icon: "/icons/tabicon2.svg" },
-  { name: "Drinks", icon: "/icons/tabicon3.svg" },
-  { name: "Other", icon: "/icons/tabicon4.svg" },
-];
+const props = defineProps({
+  tabs: {
+    type: Array,
+    required: true,
+  },
+  active: {
+    type: Number,
+    default: 0,
+  },
+});
 
-const choseTab = ref(0);
+const emit = defineEmits(["change"]);
+
+const activeTab = ref(props.active);
 
 function selectTab(index) {
-  choseTab.value = index;
+  activeTab.value = index;
+  emit("change", index);
 }
+
+watch(
+  () => props.active,
+  (newVal) => {
+    activeTab.value = newVal;
+  }
+);
 </script>
 
 <style lang="scss">

@@ -1,12 +1,32 @@
 <template>
   <section class="search-section">
     <img class="search-section__icon" src="/icons/search.svg" />
-    <input class="search-section__input" />
+    <input
+      class="search-section__input"
+      :value="modelValue"
+      @input="$emit('update:modelValue', $event.target.value)"
+    />
     <span class="search-section__text">Search</span>
   </section>
 </template>
 
 <script setup>
+import { defineProps, defineEmits, ref, watch } from "vue";
+
+const props = defineProps({
+  modelValue: {
+    type: String,
+    default: "",
+  },
+});
+
+const emit = defineEmits(["update:modelValue"]);
+
+const localQuery = ref(props.modelValue);
+
+watch(localQuery, (val) => {
+  emit("update:modelValue", val);
+});
 </script>
 
 <style lang="scss">

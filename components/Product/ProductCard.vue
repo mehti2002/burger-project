@@ -23,12 +23,14 @@
       <div class="product-section__cart-actions">
         <span class="product-section__cart-price">{{ product.price }}$</span>
         <div class="product-section__cart-btns">
-          <div class="product-section__cart-btns-container">
-            ّ
+          <div
+            @click="readDialog.open()"
+            class="product-section__cart-btns-container"
+          >
             <img class="product-section__cart-btns-img" src="/icons/eye.svg" />
           </div>
           <div
-            @click="addDialog.open()"
+            @click="editDialog.open(product)"
             class="product-section__cart-btns-container"
           >
             <img
@@ -43,7 +45,8 @@
 </template>
 
 <script setup>
-import { useAddDialogStore } from "~/store/addDialogStore";
+import { useEditDialogStore } from "~/store/editDialogStore";
+import { useReadDialogStore } from "~/store/readDialogStore";
 
 const props = defineProps({
   product: {
@@ -52,7 +55,8 @@ const props = defineProps({
   },
 });
 
-const addDialog = useAddDialogStore();
+const editDialog = useEditDialogStore();
+const readDialog = useReadDialogStore();
 </script>
 
 <style lang="scss">
