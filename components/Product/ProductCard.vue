@@ -115,6 +115,7 @@ const readDialog = useReadDialogStore();
   &__cart-info-name {
     font-size: 18px;
     font-weight: 600;
+    text-align: center;
   }
 
   &__cart-actions {

@@ -36,6 +36,7 @@
         <select
           class="product-dialog-input__input"
           v-model="newAddProduct.category"
+          required
         >
           <option v-for="cat in categories" :key="cat">{{ cat }}</option>
         </select>
@@ -130,17 +131,20 @@ function onFileChange(event) {
   }
 }
 
+const emit = defineEmits(['add-product']);
+
 function addProduct() {
-  mockProducts.push({ ...newAddProduct.value });
+  emit('add-product', { ...newAddProduct.value });
 
   newAddProduct.value = {
     image: "",
     isVegan: false,
     name: "",
     weight: "",
-    contents: "",
+    ingredients: "",
     price: "",
     category: "",
+    calories: 0,
   };
 
   addDialog.close();

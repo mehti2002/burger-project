@@ -35,7 +35,7 @@
       }"
       @click="addDialog.close()"
     ></div>
-    <ProductAddDialog class="product-dialog" />
+    <ProductAddDialog @add-product="handleAddProduct" class="product-dialog" />
     <ProductEditDialog class="product-dialog" />
     <ProductReadDialog class="product-dialog" />
   </main>
@@ -54,9 +54,13 @@ const tabsItem = [
   { name: "Other", icon: "/icons/tabicon4.svg" },
 ];
 
-const selectedTab = ref(0);
-
 const products = ref(mockProducts);
+
+function handleAddProduct(product) {
+  products.value.push(product);
+}
+
+const selectedTab = ref(0);
 
 const searchQuery = ref("");
 
