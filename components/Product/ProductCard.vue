@@ -24,7 +24,7 @@
         <span class="product-section__cart-price">{{ product.price }}$</span>
         <div class="product-section__cart-btns">
           <div
-            @click="readDialog.open()"
+            @click="readDialog.open(product)"
             class="product-section__cart-btns-container"
           >
             <img class="product-section__cart-btns-img" src="/icons/eye.svg" />

@@ -5,26 +5,19 @@ import { ref } from "vue";
 export const useReadDialogStore = defineStore('readDialog', () => {
 
     const isOpen = ref(false)
-    const selectedProduct = ref(null)
+    const selectedReadProduct = ref(null)
 
-    function open(product = null) {
-        selectedProduct.value = product ? { ...product } : {
-            image: "",
-            isVegan: false,
-            name: "",
-            weight: "",
-            contents: "",
-            price: 0,
-            category: "",
-        }
+    function open(product) {
+
+        selectedReadProduct.value = product
         isOpen.value = true
     }
     function close() {
         isOpen.value = false
-        selectedProduct.value = null
+        selectedReadProduct.value = null
 
     }
 
 
-    return { isOpen, selectedProduct, open, close }
+    return { isOpen, selectedReadProduct, open, close }
 })

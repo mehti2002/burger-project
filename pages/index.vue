@@ -36,6 +36,7 @@
     ></div>
     <ProductAddDialog class="product-dialog" />
     <ProductEditDialog class="product-dialog" />
+    <ProductReadDialog class="product-dialog" />
   </main>
 </template>
 
@@ -61,7 +62,8 @@ const filteredProducts = computed(() => {
   const currentCategory = tabsItem[selectedTab.value]?.name || "";
   return products.value.filter(
     (p) =>
-      p.name.toLowerCase().includes(searchQuery.value.toLowerCase()) && (currentCategory ? p.category === currentCategory : true)
+      p.name.toLowerCase().includes(searchQuery.value.toLowerCase()) &&
+      (currentCategory ? p.category === currentCategory : true)
   );
 });
 
