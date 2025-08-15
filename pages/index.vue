@@ -35,7 +35,7 @@
       }"
       @click="addDialog.close()"
     ></div>
-    <ProductAddDialog @add-product="handleAddProduct" class="product-dialog" />
+    <ProductAddDialog class="product-dialog" />
     <ProductEditDialog class="product-dialog" />
     <ProductReadDialog class="product-dialog" />
   </main>
@@ -46,6 +46,7 @@ import { useAddDialogStore } from "~/store/addDialogStore";
 import mockProducts from "./../src/data/mockProducts.json";
 import { useReadDialogStore } from "~/store/readDialogStore";
 import { useEditDialogStore } from "~/store/editDialogStore";
+import { useProductsStore } from "~/store/productsStore";
 
 const tabsItem = [
   { name: "Main courses", icon: "/icons/tabicon1.svg" },
@@ -54,11 +55,7 @@ const tabsItem = [
   { name: "Other", icon: "/icons/tabicon4.svg" },
 ];
 
-const products = ref(mockProducts);
-
-function handleAddProduct(product) {
-  products.value.push(product);
-}
+const productsStore = useProductsStore();
 
 const selectedTab = ref(0);
 
@@ -66,7 +63,7 @@ const searchQuery = ref("");
 
 const filteredProducts = computed(() => {
   const currentCategory = tabsItem[selectedTab.value]?.name || "";
-  return products.value.filter(
+  return productsStore.products.filter(
     (p) =>
       p.name.toLowerCase().includes(searchQuery.value.toLowerCase()) &&
       (currentCategory ? p.category === currentCategory : true)

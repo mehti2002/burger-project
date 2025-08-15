@@ -108,6 +108,7 @@
 <script setup>
 import { useAddDialogStore } from "~/store/addDialogStore";
 import mockProducts from "./../src/data/mockProducts.json";
+import { useProductsStore } from "~/store/productsStore";
 
 import { ref } from "vue";
 
@@ -130,11 +131,10 @@ function onFileChange(event) {
     newAddProduct.value.image = URL.createObjectURL(file);
   }
 }
-
-const emit = defineEmits(['add-product']);
+const productsStore = useProductsStore();
 
 function addProduct() {
-  emit('add-product', { ...newAddProduct.value });
+  productsStore.addProduct(newAddProduct.value);
 
   newAddProduct.value = {
     image: "",
@@ -144,7 +144,6 @@ function addProduct() {
     ingredients: "",
     price: "",
     category: "",
-    calories: 0,
   };
 
   addDialog.close();
