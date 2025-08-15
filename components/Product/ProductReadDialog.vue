@@ -37,7 +37,9 @@
           class="product-dialog-input__input"
           v-model="selectedReadProduct.category"
         >
-          <option v-for="cat in categories" :key="cat">{{ cat }}</option>
+          <option :value="selectedReadProduct.category">
+            {{ selectedReadProduct.category }}
+          </option>
         </select>
       </div>
 
@@ -46,7 +48,7 @@
         <input
           class="product-dialog-input__input"
           type="text"
-          v-model="selectedReadProduct.contents"
+          v-model="selectedReadProduct.ingredients"
         />
       </div>
 
@@ -103,12 +105,11 @@
 <script setup>
 import { useReadDialogStore } from "~/store/readDialogStore";
 
-
-const selectedReadProduct = computed(() => readDialog.selectedReadProduct || {});
+const selectedReadProduct = computed(
+  () => readDialog.selectedReadProduct || {}
+);
 
 const readDialog = useReadDialogStore();
-
-const categories = ["همبرگر", "پیتزا", "سالاد", "نوشیدنی"];
 
 </script>
 
@@ -179,7 +180,7 @@ const categories = ["همبرگر", "پیتزا", "سالاد", "نوشیدنی"
   width: 100%;
   cursor: pointer;
   margin-top: 25px;
-  background: #8FBC8F;
+  background: #8fbc8f;
   color: #fff;
   font-size: 18px;
   padding: 0.5rem;

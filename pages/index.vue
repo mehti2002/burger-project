@@ -30,7 +30,8 @@
     <div
       class="dialog-overlay"
       :class="{
-        'dialog-overlay--active': addDialog.isOpen || readDialog.isOpen,
+        'dialog-overlay--active':
+          addDialog.isOpen || readDialog.isOpen || editDialog.isOpen,
       }"
       @click="addDialog.close()"
     ></div>
@@ -44,6 +45,7 @@
 import { useAddDialogStore } from "~/store/addDialogStore";
 import mockProducts from "./../src/data/mockProducts.json";
 import { useReadDialogStore } from "~/store/readDialogStore";
+import { useEditDialogStore } from "~/store/editDialogStore";
 
 const tabsItem = [
   { name: "Main courses", icon: "/icons/tabicon1.svg" },
@@ -69,6 +71,7 @@ const filteredProducts = computed(() => {
 
 const addDialog = useAddDialogStore();
 const readDialog = useReadDialogStore();
+const editDialog = useEditDialogStore();
 </script>
 
 <style lang="scss" scoped>

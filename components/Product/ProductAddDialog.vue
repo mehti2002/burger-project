@@ -46,7 +46,7 @@
         <input
           class="product-dialog-input__input"
           type="text"
-          v-model="newProduct.contents"
+          v-model="newProduct.ingredients"
         />
       </div>
 
@@ -117,7 +117,7 @@ const newProduct = ref({
   price: "",
   category: "",
 });
-const categories = ["همبرگر", "پیتزا", "سالاد", "نوشیدنی"];
+const categories = ["Main courses", "Side dishes", "Drinks", "Other"];
 
 function addProduct() {
   mockProducts.push({ ...newProduct.value });
