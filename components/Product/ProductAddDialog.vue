@@ -136,7 +136,7 @@ function addProduct() {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .product-dialog-add__section {
   background: rgb(255, 255, 255);
   width: 350px;

@@ -112,7 +112,7 @@ const categories = ["همبرگر", "پیتزا", "سالاد", "نوشیدنی"
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .product-dialog-read__section {
   background: rgb(255, 255, 255);
   width: 350px;
