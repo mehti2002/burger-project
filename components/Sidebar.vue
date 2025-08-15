@@ -154,10 +154,6 @@ const sidebarItems = [
     cursor: pointer;
   }
 
-  &__item :hover {
-    background: #eeeeee;
-  }
-
   &__bottom {
     position: fixed;
     bottom: 0;

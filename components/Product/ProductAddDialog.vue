@@ -98,7 +98,7 @@
 
       <div class="product-dialog-input__btn-container">
         <button class="product-dialog-input__btn" @click="addProduct">
-          Add Product
+          Add product to the menu
         </button>
       </div>
     </div>
