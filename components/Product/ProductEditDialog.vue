@@ -37,9 +37,7 @@
           class="product-dialog-input__input"
           v-model="tempProduct.category"
         >
-          <option :value="tempProduct.category">
-            {{ tempProduct.category }}
-          </option>
+           <option v-for="cat in categories" :key="cat" :value="cat">{{ cat }}</option>
         </select>
       </div>
 
@@ -90,7 +88,11 @@
 
       <div class="product-dialog-input__container">
         <label class="product-dialog-input__label">Upload photo</label>
-        <input class="product-dialog-input__input" type="file" />
+        <input
+          @change="handleFileUpload"
+          class="product-dialog-input__input"
+          type="file"
+        />
       </div>
 
       <div class="product-dialog-input__btn-container">
@@ -109,6 +111,8 @@ import { ref } from "vue";
 
 const editDialog = useEditDialogStore();
 
+const categories = ["Main courses", "Side dishes", "Drinks", "Other"];
+
 const tempProduct = ref({});
 
 watch(
@@ -119,6 +123,13 @@ watch(
     }
   }
 );
+
+const handleFileUpload = (event) => {
+  const file = event.target.files[0];
+  if (file) {
+    tempProduct.value.image = URL.createObjectURL(file);
+  }
+};
 
 function submitEdit() {
   Object.assign(editDialog.selectedEditProduct, tempProduct.value);

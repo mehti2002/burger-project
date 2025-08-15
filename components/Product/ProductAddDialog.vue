@@ -27,7 +27,7 @@
         <input
           class="product-dialog-input__input"
           type="text"
-          v-model="newProduct.name"
+          v-model="newAddProduct.name"
         />
       </div>
 
@@ -35,7 +35,7 @@
         <label class="product-dialog-input__label">Category</label>
         <select
           class="product-dialog-input__input"
-          v-model="newProduct.category"
+          v-model="newAddProduct.category"
         >
           <option v-for="cat in categories" :key="cat">{{ cat }}</option>
         </select>
@@ -46,7 +46,7 @@
         <input
           class="product-dialog-input__input"
           type="text"
-          v-model="newProduct.ingredients"
+          v-model="newAddProduct.ingredients"
         />
       </div>
 
@@ -55,7 +55,7 @@
         <input
           class="product-dialog-input__checkbox"
           type="checkbox"
-          v-model="newProduct.isVegan"
+          v-model="newAddProduct.isVegan"
         />
       </div>
 
@@ -64,7 +64,7 @@
         <input
           class="product-dialog-input__input"
           type="text"
-          v-model="newProduct.weight"
+          v-model="newAddProduct.weight"
         />
       </div>
 
@@ -73,7 +73,7 @@
         <input
           class="product-dialog-input__input"
           type="text"
-          v-model="newProduct.calories"
+          v-model="newAddProduct.calories"
         />
       </div>
 
@@ -82,13 +82,17 @@
         <input
           class="product-dialog-input__input"
           type="number"
-          v-model="newProduct.price"
+          v-model="newAddProduct.price"
         />
       </div>
 
       <div class="product-dialog-input__container">
         <label class="product-dialog-input__label">Upload photo</label>
-        <input class="product-dialog-input__input" type="file" />
+        <input
+          @change="onFileChange"
+          class="product-dialog-input__input"
+          type="file"
+        />
       </div>
 
       <div class="product-dialog-input__btn-container">
@@ -108,7 +112,7 @@ import { ref } from "vue";
 
 const addDialog = useAddDialogStore();
 
-const newProduct = ref({
+const newAddProduct = ref({
   image: "",
   isVegan: false,
   name: "",
@@ -119,10 +123,17 @@ const newProduct = ref({
 });
 const categories = ["Main courses", "Side dishes", "Drinks", "Other"];
 
-function addProduct() {
-  mockProducts.push({ ...newProduct.value });
+function onFileChange(event) {
+  const file = event.target.files[0];
+  if (file) {
+    newAddProduct.value.image = URL.createObjectURL(file);
+  }
+}
 
-  newProduct.value = {
+function addProduct() {
+  mockProducts.push({ ...newAddProduct.value });
+
+  newAddProduct.value = {
     image: "",
     isVegan: false,
     name: "",
