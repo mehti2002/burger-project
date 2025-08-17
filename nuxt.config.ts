@@ -6,7 +6,7 @@ export default defineNuxtConfig({
     '@pinia/nuxt'
   ],
   nitro: {
-    preset: 'cloudflare-pages'
+    preset: 'vercel'
   }
 })
 
