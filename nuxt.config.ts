@@ -5,6 +5,7 @@ export default defineNuxtConfig({
   modules: [
     '@pinia/nuxt'
   ],
+  ssr: true,
   nitro: {
     preset: 'vercel'
   }
