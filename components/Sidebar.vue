@@ -22,7 +22,9 @@
             class="sidebar-section__item-icon"
           />
           <span class="sidebar-section__item-name">{{ item.title }}</span>
-          <span class="sidebar-section__item-orders" v-if="index === 1" >12</span>
+          <span class="sidebar-section__item-orders" v-if="index === 1"
+            >12</span
+          >
         </div>
       </div>
     </div>
@@ -65,7 +67,7 @@ const sidebarItems = [
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 70%;
+  gap: 10px;
   justify-content: space-between;
 
   &__head {
@@ -93,7 +95,7 @@ const sidebarItems = [
     border-radius: 8px;
   }
 
-  &__profile-name{
+  &__profile-name {
     font-size: 15px;
   }
 
@@ -159,7 +161,7 @@ const sidebarItems = [
     bottom: 0;
   }
 
-  &__item-orders{
+  &__item-orders {
     font-size: 13px;
     padding: 0.2rem 0.5rem;
     border-radius: 12px;
